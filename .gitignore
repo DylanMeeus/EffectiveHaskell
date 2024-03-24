@@ -19,5 +19,8 @@ cabal.sandbox.config
 .stack-work/
 cabal.project.local
 cabal.project.local~
+
+*.swp
+
 .HTF/
 .ghc.environment.*
