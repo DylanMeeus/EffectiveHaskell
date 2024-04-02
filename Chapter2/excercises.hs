@@ -19,11 +19,7 @@ reverseFold lst = foldl (\x y -> y : x) [] lst
 
 
 -- implement zipWith, with and without list comprehension
-
-
---zipW f (x:xs) (y:ys) = f x y : zipW xs ys
-
-
+-- zipW == zipWith without list comprehension
 zipW f lst1 lst2  
     | lst1 == [] = []
     | lst2 == [] = []
@@ -33,4 +29,12 @@ zipW f lst1 lst2
         in (f a b) : zipW f (tail lst1) (tail lst2)
 
 
+-- zipW' is zipWith using list comprehension
 zipW' f lst1 lst2 = [f a b | (a, b) <- zip lst1 lst2] 
+
+
+-- implement concatMap using foldr/foldl
+cMap lst = foldr1 (\x y -> x <> y) lst
+cMap' lst = foldl1 (\x y -> x <>y) lst
+
+
