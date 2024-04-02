@@ -73,3 +73,24 @@ pairwiseSum' xs ys
     | [] == xs = []
     | [] == ys = []
     | otherwise = (head xs + head ys) : pairwiseSum' (tail xs) (tail ys)
+
+
+findFirst predicate = 
+    foldr findHelper []
+    where
+        findHelper listEl maybeFound
+            | predicate listEl = [listEl]
+            | otherwise = maybeFound
+
+
+
+-- co-recursive version with thinks to infinity
+fibGen = 0 : 1 : fibGen' 0 1 
+    where fibGen' a b = (a + b) : fibGen' b  (a + b) 
+
+
+
+-- recursive version, with thunks, to infinity
+fibs = 0 : 1 : helper fibs (tail fibs)
+    where
+        helper (a : as) (b : bs) = a + b : helper as bs
